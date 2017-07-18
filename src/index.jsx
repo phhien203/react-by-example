@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HelloWorld from './components/HelloWorld';
+import BookStore from './components/BookStore';
 
 import './styles/app.scss';
 
 ReactDOM.render(
-  <HelloWorld />,
+  <BookStore />,
   document.getElementById('app')
 );
