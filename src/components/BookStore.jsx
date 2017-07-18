@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import BookList from './BookList';
 import ShippingDetails from './ShippingDetails';
 import DeliveryDetails from './DeliveryDetails';
+import Confirmation from './Confirmation';
+import Success from './Success';
 
 export default class BookStore extends Component {
   constructor(props) {
@@ -30,6 +32,13 @@ export default class BookStore extends Component {
         return <ShippingDetails updateFormData={ this.updateFormData } />;
       case 3:
         return <DeliveryDetails updateFormData={ this.updateFormData } />;
+      case 4:
+        return <Confirmation data={ this.state.formValues }
+          updateFormData={ this.updateFormData } />;
+      case 5:
+        return <Success data={ this.state.formValues } />
+      default:
+        return <BookList updateFormData={ this.updateFormData } />
     }
   }
 }
