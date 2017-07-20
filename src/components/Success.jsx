@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Success extends Component {
+var Success = React.createClass({
   render() {
     var numberOfDays = '1 to 2';
 
@@ -19,4 +19,6 @@ export default class Success extends Component {
       </div>
     );
   }
-}
+});
+
+module.exports = Success;

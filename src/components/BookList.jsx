@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class BookList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+var BookList = React.createClass({
+  getInitialState() {
+    return {
       books: [
         { id: 1, name: 'Zero to One', author: 'Peter Thiel' },
         { id: 2, name: 'Monk who sold his Ferrari', author: 'Robin Sharma' },
@@ -12,9 +11,7 @@ export default class BookList extends Component {
       selectedBooks: [],
       error: false
     };
-    this.handleSelectedBooks = this.handleSelectedBooks.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  },
   _renderError() {
     if (this.state.error) {
       return (
@@ -23,7 +20,7 @@ export default class BookList extends Component {
         </div>
       );
     }
-  }
+  },
   handleSelectedBooks(event) {
     var selectedBooks = this.state.selectedBooks;
     var index = selectedBooks.indexOf(event.target.value);
@@ -37,7 +34,7 @@ export default class BookList extends Component {
     }
 
     this.setState({ selectedBooks: selectedBooks });
-  }
+  },
   _renderBook(book) {
     return (
       <div className="checkbox" key={ book.id }>
@@ -48,7 +45,7 @@ export default class BookList extends Component {
         </label>
       </div>
     );
-  }
+  },
   handleSubmit(event) {
     event.preventDefault();
 
@@ -62,7 +59,7 @@ export default class BookList extends Component {
         selectedBooks: this.state.selectedBooks
       });
     }
-  }
+  },
   render() {
     var errorMessage = this._renderError();
 
@@ -83,4 +80,6 @@ export default class BookList extends Component {
       </div>
     );
   }
-}
+});
+
+module.exports = BookList;

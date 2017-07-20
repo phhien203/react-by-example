@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import BookList from './BookList';
 import ShippingDetails from './ShippingDetails';
@@ -6,15 +6,13 @@ import DeliveryDetails from './DeliveryDetails';
 import Confirmation from './Confirmation';
 import Success from './Success';
 
-export default class BookStore extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+var BookStore = React.createClass({
+  getInitialState() {
+    return {
       currentStep: 1,
       formValues: {}
     };
-    this.updateFormData = this.updateFormData.bind(this);
-  }
+  },
   updateFormData(formData) {
     var formValues = Object.assign({}, this.state.formValues, formData);
     var nextStep = this.state.currentStep + 1;
@@ -22,8 +20,7 @@ export default class BookStore extends Component {
       currentStep: nextStep,
       formValues: formValues
     });
-    console.log(formData);
-  }
+  },
   render() {
     switch(this.state.currentStep) {
       case 1:
@@ -41,4 +38,6 @@ export default class BookStore extends Component {
         return <BookList updateFormData={ this.updateFormData } />
     }
   }
-}
+});
+
+module.exports = BookStore;

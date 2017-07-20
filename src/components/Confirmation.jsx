@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Confirmation extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+var Confirmation = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     this.props.updateFormData(this.props.data);
-  }
+  },
   render() {
     return (
       <div>
@@ -30,4 +26,6 @@ export default class Confirmation extends Component {
       </div>
     );
   }
-}
+});
+
+module.exports = Confirmation;

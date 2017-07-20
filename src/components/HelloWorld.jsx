@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class HelloWorld extends Component {
+var HelloWorld = React.createClass({
   render() {
     return (
       <div className="hello-world">
@@ -8,6 +8,6 @@ export class HelloWorld extends Component {
       </div>
     );
   }
-}
+});
 
-export default HelloWorld;
+module.exports = HelloWorld;

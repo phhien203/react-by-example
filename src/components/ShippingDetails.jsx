@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ShippingDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+var ShippingDetails = React.createClass({
+  getInitialState() {
+    return {
       fullName: '',
       contactNumber: '',
       shippingAddress: '',
       error: false
-    }
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    };
+  },
   _renderError() {
     if (this.state.error) {
       return (
@@ -19,7 +17,7 @@ export default class ShippingDetails extends Component {
         </div>
       );
     }
-  }
+  },
   _validateInput() {
     if (this.state.fullName === '') {
       this.setState({
@@ -39,7 +37,7 @@ export default class ShippingDetails extends Component {
       });
       return true;
     }
-  }
+  },
   handleSubmit(event) {
     event.preventDefault();
 
@@ -52,13 +50,12 @@ export default class ShippingDetails extends Component {
     if (this._validateInput()) {
       this.props.updateFormData(formData);
     }
-  }
+  },
   handleChange(event, attribute) {
     var newState = this.state;
     newState[attribute] = event.target.value;
     this.setState(newState);
-    console.log(newState);
-  }
+  },
   render() {
     var errorMessage = this._renderError();
 
@@ -105,4 +102,6 @@ export default class ShippingDetails extends Component {
       </div>
     );
   }
-}
+});
+
+module.exports = ShippingDetails;

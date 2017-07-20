@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class DeliveryDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+var DeliveryDetails = React.createClass({
+  getInitialState() {
+    return {
       deliveryOption: 'Primary'
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  },
   handleChange(event) {
     this.setState({
       deliveryOption: event.target.value
     });
-  }
+  },
   handleSubmit(event) {
     event.preventDefault();
     this.props.updateFormData(this.state);
-  }
+  },
   render() {
     return (
       <div>
@@ -54,4 +51,6 @@ export default class DeliveryDetails extends Component {
       </div>
     );
   }
-}
+});
+
+module.exports = DeliveryDetails;
