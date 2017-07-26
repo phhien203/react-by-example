@@ -1,17 +1,22 @@
+// require('jquery');
+// require('bootstrap');
+// require('bootstrap-webpack');
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import BookList from './BookList';
 import ShippingDetails from './ShippingDetails';
 import DeliveryDetails from './DeliveryDetails';
 import Confirmation from './Confirmation';
 import Success from './Success';
+import ModalAlertTimeout from './ModalAlertTimeout';
 
 var BookStore = React.createClass({
   getInitialState() {
     return {
       currentStep: 1,
       formValues: {},
-      cartTimeoutSecs: 1 * 60
+      cartTimeoutSecs: .25 * 60
     };
   },
   updateCartTimeout(timeoutSecs) {
@@ -20,8 +25,11 @@ var BookStore = React.createClass({
     });
   },
   alertCartTimeout() {
+    ReactDOM.render(<ModalAlertTimeout />, document.getElementById('modalAlertTimeout'));
     this.setState({
-      currentStep: 10
+      currentStep: 1,
+      formValues: {},
+      cartTimeoutSecs: .25 * 60
     });
   },
   updateFormData(formData) {
