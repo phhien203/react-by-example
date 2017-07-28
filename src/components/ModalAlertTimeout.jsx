@@ -7,7 +7,7 @@ import { Modal, Button } from 'react-bootstrap';
 var ModalAlertTimeout = React.createClass({
   getInitialState() {
     return ({
-      showModal: true
+      showModal: false
     });
   },
   close() {

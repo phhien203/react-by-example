@@ -1,6 +1,3 @@
-// require('jquery');
-// require('bootstrap');
-// require('bootstrap-webpack');
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -16,7 +13,7 @@ var BookStore = React.createClass({
     return {
       currentStep: 1,
       formValues: {},
-      cartTimeoutSecs: .25 * 60
+      cartTimeoutSecs: 5*60
     };
   },
   updateCartTimeout(timeoutSecs) {
@@ -25,11 +22,11 @@ var BookStore = React.createClass({
     });
   },
   alertCartTimeout() {
-    ReactDOM.render(<ModalAlertTimeout />, document.getElementById('modalAlertTimeout'));
+    this.refs.timeoutModal.open();
     this.setState({
       currentStep: 1,
       formValues: {},
-      cartTimeoutSecs: .25 * 60
+      cartTimeoutSecs: 5*60
     });
   },
   updateFormData(formData) {
@@ -41,35 +38,49 @@ var BookStore = React.createClass({
     });
   },
   render() {
+    var mainForm;
     switch(this.state.currentStep) {
       case 1:
-        return <BookList updateFormData={ this.updateFormData } />;
+        mainForm = <BookList updateFormData={ this.updateFormData } />;
+        break;
       case 2:
-        return <ShippingDetails updateFormData={ this.updateFormData }
+        mainForm = <ShippingDetails updateFormData={ this.updateFormData }
           cartTimeoutSecs={ this.state.cartTimeoutSecs }
           updateCartTimeout={ this.updateCartTimeout }
           alertCartTimeout={ this.alertCartTimeout } />;
+        break;
       case 3:
-        return <DeliveryDetails updateFormData={ this.updateFormData }
+        mainForm = <DeliveryDetails updateFormData={ this.updateFormData }
           cartTimeoutSecs={ this.state.cartTimeoutSecs }
           updateCartTimeout={ this.updateCartTimeout }
           alertCartTimeout={ this.alertCartTimeout } />;
+        break;
       case 4:
-        return <Confirmation data={ this.state.formValues }
+        mainForm = <Confirmation data={ this.state.formValues }
           updateFormData={ this.updateFormData }
           cartTimeoutSecs={ this.state.cartTimeoutSecs } />;
+        break;
       case 5:
-        return <Success data={ this.state.formValues }
+        mainForm = <Success data={ this.state.formValues }
           cartTimeoutSecs={ this.state.cartTimeoutSecs } />
+        break;
       case 10:
-        return (
+        mainForm = (
           <div>
             <h2>Your cart timed out, please try again.</h2>
           </div>
         );
+        break;
       default:
-        return <BookList updateFormData={ this.updateFormData } />
+        mainForm = <BookList updateFormData={ this.updateFormData } />;
     }
+
+    return (
+      <div>
+        {mainForm}
+        <ModalAlertTimeout ref="timeoutModal" />
+      </div>
+    );
   }
 });
 

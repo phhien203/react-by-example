@@ -12,7 +12,7 @@ var CartTimeoutMixin = {
     })
   },
   componentWillUnmount() {
-    this.props.updateCartTimeout(this.state.cartTimeoutSecs);
+    this.props.updateCartTimeout(5*60);
   }
 };
 

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/fonts/glyphicons-halflings-regular.ttf';
+import { Glyphicon } from 'react-bootstrap';
+
 import SetIntervalMixin from '../mixins/SetIntervalMixin';
 import CartTimeoutMixin from '../mixins/CartTimeoutMixin';
 
@@ -115,7 +119,7 @@ var ShippingDetails = React.createClass({
         </div>
 
         <div className="well">
-          <span className="glyphicon glyphicon-time" aria-hidden="true"></span>
+          <Glyphicon glyph="glyphicon glyphicon-time" />
           You have {minutes} minutes, {seconds} seconds before confirming order.
         </div>
       </div>
